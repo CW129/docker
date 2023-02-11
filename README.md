@@ -2,8 +2,7 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
 
 ###Docker Network###
 
-https://github.com/CW129/docker/issues/2#issue-1580962714
-
+![image](https://user-images.githubusercontent.com/104714337/218274811-8623c5b7-81b8-450d-81c6-3df85295a24b.png)
 
 OSI 7 Layer Physical Layer(1) : 통신에 필요한 전기적,기계적인 신호 담당 / 들어온 데이터를 0과 1로 바꾸는 역할(Bit)
 
