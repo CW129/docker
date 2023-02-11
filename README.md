@@ -6,7 +6,7 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
 ![image](https://user-images.githubusercontent.com/104714337/218274811-8623c5b7-81b8-450d-81c6-3df85295a24b.png)
 1. Docker Cli 입력
 2. 입력된 CLI가 Docker Engine(중계 역할) -> Docker Daemon으로 전달
-3. Docker Daemon에서 실제 Host OS(Kernel에 CLI를 수행하기 위한 명령들을 실행)
+3. Docker Daemon에서 실제 Host OS(Container Runtime CLI를 수행하기 위한 명령들을 실행)
 
 OSI 7 Layer Physical Layer(1) : 통신에 필요한 전기적,기계적인 신호 담당 / 들어온 데이터를 0과 1로 바꾸는 역할(Bit)
 
