@@ -42,6 +42,9 @@ UTS namespace Host name, Domain name을 위한 격리 왜 사용하는가? 하�
 
 Network namespace 리눅스 시스템에서 네트워크는 하나만 존재하는 글로벌 자원. 네트워크 인터페이스, 라우팅테이블 등은 하나만 있으며 시스템의 모든 계정이 이 자원을 공유하기 때문에 네트워크 정보가 변경될 경우 시스템 전체에 영향 네트워크 네임스페이스는 이런 문제 때문에 '네트워크 공간'을 격리하기 위한 기능, 여기에 인터페이스 추가, 네트워크를 설정해야함 (네트워크 네임스페이스는 virtual Ethernet만 할당 할 수 있음)
 
+![image](https://user-images.githubusercontent.com/104714337/218275363-eb096439-b7ef-45ab-80c8-62e935bdbe1f.png)
+
+
 -- 참고-- 리눅스에서 네임스페이스를 분리하는 경우를 제외하면 모든 프로세스는 init(1) 번 프로세스의 네임스페이스를 공유해서 사용
 
 도커--link option : 컨테이너간의 Channel을 생성, Channel은 Pipe, shared memory, other communication mechanism ( socket is coomonlly used )
