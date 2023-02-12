@@ -31,6 +31,7 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
 
 
   User Space : 
+    
     Application이 전송할 데이터를 생성하여 write 시스템 콜 호출(커널 영역으로 넘어감)
     
   Kernel Space : 
@@ -49,36 +50,61 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
     Driver - 드라이버-NIC 통신 규약에 따라 패킷 전송을 요청
     
   device Space : 
+  
     요놈이 실제 선으로 bit를 전송
 
 -Docker Network Types-
 
-  Bridge: default Network Driver - Link Layer 네트워크로 Host의 커널 하드웨어 혹은 소프트웨어 디바이스를 사용 Layer 2 (Data Link)
+  Bridge: 
+  
+    default Network Driver - Link Layer 네트워크로 Host의 커널 하드웨어 혹은 소프트웨어 디바이스를 사용 Layer 2 (Data Link)
 
-  host: Docker daemon의 인터페이스(가상) 을 거치지 않고 호스트의 인터페이스에 직접 통신 Layer 3 (Network) Mac, Window 는 사용할 수 없음 (가상머신에 도커를 설치하기 때문에) Network Namespace는 호스트와 공유, 다른 Namespace는 동일하게 격리
+  host: 
+    
+    Docker daemon의 인터페이스(가상) 을 거치지 않고 호스트의 인터페이스에 직접 통신 Layer 3 (Network) Mac, Window 는 사용할 수 없음 (가상머신에 도커를 설치하기 때문에) Network Namespace는 호스트와 공유, 다른 Namespace는 동일하게 격리
 
-  overlay: swarm 에서 사용할 수 있는 Network Type, 분산 네트워킹을 위한 기술로 도커 클러스터 구성할 때 필요 docker network create -d overlay overlay_test
+  overlay: 
+    
+    swarm 에서 사용할 수 있는 Network Type, 분산 네트워킹을 위한 기술로 도커 클러스터 구성할 때 필요 docker network create -d overlay overlay_test
 
-  ipvlan: Linux kernel 기술로 하나의 물리 인터페이스에 여러 가상 인터페이스를 만듬 L2 Mode : 가상 장치는 ARP 요청을 수신/응답, 가장 단순한 통신(성능이 좋지만 네트워크 트래픽에 대한 제어가 약함) L3 Mode : L3 이상의 트래픽만 처리(ARP 요청에 응답하지 않음) \ iptables의 실제 네트워크에 container를 직접 연결
+  ipvlan: 
+    
+    Linux kernel 기술로 하나의 물리 인터페이스에 여러 가상 인터페이스를 만듬 L2 Mode : 가상 장치는 ARP 요청을 수신/응답, 가장 단순한 통신(성능이 좋지만 네트워크 트래픽에 대한 제어가 약함) L3 Mode : L3 이상의 트래픽만 처리(ARP 요청에 응답하지 않음) \ iptables의 실제 네트워크에 container를 직접 연결
 
-  macvlan: 하나의 인터페이스에 여러개의 Mac주소를 가지는 네트워크 인터페이스로 분리하여 사용하는 기술 IPvlan과의 차이점은 Macvlan은 고유의 Mac주소 할당, IPvlan은 호스트와 동일한 Mac주소 사용 * Macvlan에선 호스트 NIC가 Promiscuous mode를 사용해야함(패킷을 컨테이너로 전달하지 않음)
+  macvlan: 
+    
+    하나의 인터페이스에 여러개의 Mac주소를 가지는 네트워크 인터페이스로 분리하여 사용하는 기술 IPvlan과의 차이점은 Macvlan은 고유의 Mac주소 할당, IPvlan은 호스트와 동일한 Mac주소 사용 * Macvlan에선 호스트 NIC가 Promiscuous mode를 사용해야함(패킷을 컨테이너로 전달하지 않음)
 
-  none: 단어 그대로 의미
+  none: 
+     
+    단어 그대로 의미
 
-  Network Plugins: 넘겨
+  Network Plugins: 
+    
+    넘겨
 
 -Docker Network 이해에 필요한 네임스페이스 개념-
 
-  UTS namespace Host name, Domain name을 위한 격리 왜 사용하는가? 하나의 Host에서 여러개의 애플리케이션을 올리는 상황에서 여러개의 애플리케이션이 같은 포트와 IP를 사용할지만 각각의 hostname으로 식별이 필요한 경우
+  UTS namespace: 
+    
+    Host name, Domain name을 위한 격리 왜 사용하는가? 
+    하나의 Host에서 여러개의 애플리케이션을 올리는 상황에서 여러개의 애플리케이션이 같은 포트와 IP를 사용할지만 각각의 hostname으로 식별이 필요한 경우
 
-  Network namespace 리눅스 시스템에서 네트워크는 하나만 존재하는 글로벌 자원. 네트워크 인터페이스, 라우팅테이블 등은 하나만 있으며 시스템의 모든 계정이 이 자원을 공유하기 때문에 네트워크 정보가 변경될 경우 시스템 전체에 영향 네트워크 네임스페이스는 이런 문제 때문에 '네트워크 공간'을 격리하기 위한 기능, 여기에 인터페이스 추가, 네트워크를 설정해야함 (네트워크 네임스페이스는 virtual Ethernet만 할당 할 수 있음)
+  Network namespace:
+    
+    리눅스 시스템에서 네트워크는 하나만 존재하는 글로벌 자원. 
+    네트워크 인터페이스, 라우팅테이블 등은 하나만 있으며 시스템의 모든 계정이 이 자원을 공유하기 때문에 네트워크 정보가 변경될 경우 시스템 전체에 영향 네트워크 네임스페이스는 이런 문제 때문에 '네트워크 공간'을 격리하기 위한 기능, 여기에 인터페이스 추가, 네트워크를 설정해야함 (네트워크 네임스페이스는 virtual Ethernet만 할당 할 수 있음)
 
 
 
 -- 참고-- 
   리눅스에서 네임스페이스를 분리하는 경우를 제외하면 모든 프로세스는 init(1) 번 프로세스의 네임스페이스를 공유해서 사용
 
-  도커--link option : 컨테이너간의 Channel을 생성, Channel은 Pipe, shared memory, other communication mechanism ( socket is coomonlly used )
+  도커--link option : 
+    
+    컨테이너간의 Channel을 생성, Channel은 Pipe, shared memory, other communication mechanism ( socket is coomonlly used )
 
-  Promiscuous mode : 네트워크 인터페이스는 패킷이 도착할때 패킷의 2계층 목적지 주소를 확인 > 목적지가 해당 인터페이스의 주소 혹은 브로드캐스트 주소가 아닐경우 패킷을 폐기 Promiscuous mode는 패킷의 목적지 주소가 폐기조건에 해당되도 패킷을 내부로 전달하는 방식
+  Promiscuous mode : 
+    
+    네트워크 인터페이스는 패킷이 도착할때 패킷의 2계층 목적지 주소를 확인 > 목적지가 해당 인터페이스의 주소 혹은 브로드캐스트 주소가 아닐경우 패킷을 폐기 Promiscuous mode는 패킷의 목적지 주소가 폐기조건에 해당되도 패킷을 내부로 전달하는 방식
 
