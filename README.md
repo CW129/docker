@@ -110,3 +110,6 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
     
   Docker LibNetwork 모델 디자인 참고 https://github.com/moby/libnetwork/blob/master/docs/design.md
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!굉장히 좋은 참고자료!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+꼭 읽어보길
+http://cloudrain21.com/container-networking-model
