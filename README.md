@@ -2,11 +2,14 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
 
 ###Docker Network###
 
-도커의 동작 흐름
+-도커의 동작 흐름-
+
 ![image](https://user-images.githubusercontent.com/104714337/218274811-8623c5b7-81b8-450d-81c6-3df85295a24b.png)
 1. Docker Cli 입력
 2. 입력된 CLI가 Docker Engine(중계 역할) -> Docker Daemon으로 전달
 3. Docker Daemon에서 실제 Host OS(Container Runtime CLI를 수행하기 위한 명령들을 실행)
+
+-7계층 역할-
 
 OSI 7 Layer Physical Layer(1) : 통신에 필요한 전기적,기계적인 신호 담당 / 들어온 데이터를 0과 1로 바꾸는 역할(Bit)
 
@@ -22,7 +25,10 @@ Presentation Layer(6) : 데이터 표현 방식 지정(암호화,압축) 세가�
 
 Application Layer(7) : 프로세스 간의 정보 교환
 
-Docker Network Types
+-Linux network layer-
+
+
+-Docker Network Types-
 
 Bridge: default Network Driver - Link Layer 네트워크로 Host의 커널 하드웨어 혹은 소프트웨어 디바이스를 사용 Layer 2 (Data Link)
 
@@ -37,6 +43,8 @@ macvlan: 하나의 인터페이스에 여러개의 Mac주소를 가지는 네트
 none: 단어 그대로 의미
 
 Network Plugins: 넘겨
+
+-Docker Network 이해에 필요한 네임스페이스 개념-
 
 UTS namespace Host name, Domain name을 위한 격리 왜 사용하는가? 하나의 Host에서 여러개의 애플리케이션을 올리는 상황에서 여러개의 애플리케이션이 같은 포트와 IP를 사용할지만 각각의 hostname으로 식별이 필요한 경우
 
