@@ -34,13 +34,20 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
     Application이 전송할 데이터를 생성하여 write 시스템 콜 호출(커널 영역으로 넘어감)
     
   Kernel Space : 
+  
     File Layer - 파일(file) 레이어는 단순한 검사만 하고 파일 구조체에 연결된 소켓 구조체를 사용해서 소켓 함수를 호출
+    
     Socekts - Write 시스템 콜을 호출하면 유저 영역의 데이터가 커널 메모리로 복사되고, send socket buffer 의 뒷부분에 추가
+    
     TCP - TCP segment, 즉 패킷을 생성한다. Flow control 같은 이유로 데이터 전송이 불가능하면 시스템 콜은 여기서 끝나고, 유저 모드로 돌아간다(애플리케이션으로 제어권이 넘어간다)
           (TCP segment는 TCP 헤더와 TCP Payload 두가지 정보가 있음, TCP Payload가 실제 데이터)
+          
     IP - TCP segment 에 IP 헤더를 추가하고, IP routing 을 한다(IP routing 이란 next hop을 찾는 것)
+    
     Ethernet - ARP(Address Resolution Protocol)를 사용해서 next hop IP 의 MAC 주소 찾음(Ethernet 헤더를 패킷에 추가)
+    
     Driver - 드라이버-NIC 통신 규약에 따라 패킷 전송을 요청
+    
   device Space : 
     요놈이 실제 선으로 bit를 전송
 
