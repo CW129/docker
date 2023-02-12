@@ -107,4 +107,6 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
   Promiscuous mode : 
     
     네트워크 인터페이스는 패킷이 도착할때 패킷의 2계층 목적지 주소를 확인 > 목적지가 해당 인터페이스의 주소 혹은 브로드캐스트 주소가 아닐경우 패킷을 폐기 Promiscuous mode는 패킷의 목적지 주소가 폐기조건에 해당되도 패킷을 내부로 전달하는 방식
+    
+  Docker LibNetwork 모델 디자인 참고 https://github.com/moby/libnetwork/blob/master/docs/design.md
 
