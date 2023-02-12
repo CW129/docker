@@ -26,6 +26,7 @@ Docker, Podman 등 모든 컨테이너 도구는 리눅스 커널의 기능을 �
   Application Layer(7) : 프로세스 간의 정보 교환
 
 -Linux network layer-
+![image](https://user-images.githubusercontent.com/104714337/218293029-97ccde41-3d8b-4a9f-8cbd-6c9c081e9632.png)
   User Space : 
     Application이 전송할 데이터를 생성하여 write 시스템 콜 호출(커널 영역으로 넘어감)
     
